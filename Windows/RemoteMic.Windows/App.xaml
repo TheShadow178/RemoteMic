@@ -1,0 +1,33 @@
+<Application x:Class="RemoteMic.Windows.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             ShutdownMode="OnExplicitShutdown">
+  <Application.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Themes/Light.xaml" />
+        <ResourceDictionary Source="Resources/Strings.zh-Hans.xaml" />
+      </ResourceDictionary.MergedDictionaries>
+
+      <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+      <FontFamily x:Key="AppFont">Segoe UI, Microsoft YaHei UI</FontFamily>
+
+      <Style TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{DynamicResource AppFont}" />
+        <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+      </Style>
+      <Style TargetType="Button">
+        <Setter Property="FontFamily" Value="{DynamicResource AppFont}" />
+        <Setter Property="Cursor" Value="Hand" />
+      </Style>
+      <Style TargetType="ComboBox">
+        <Setter Property="FontFamily" Value="{DynamicResource AppFont}" />
+        <Setter Property="MinHeight" Value="28" />
+        <Setter Property="Padding" Value="8,2" />
+      </Style>
+      <Style TargetType="ToggleButton">
+        <Setter Property="FontFamily" Value="{DynamicResource AppFont}" />
+      </Style>
+    </ResourceDictionary>
+  </Application.Resources>
+</Application>

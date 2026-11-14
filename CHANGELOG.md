@@ -1,5 +1,20 @@
 # 更新日志
 
+## 未发布 · Windows 预览版
+
+### 新增
+
+- 新增 `.NET 8 + WPF` Windows 客户端，复刻 v1.5.0 音频控制台、按键映射页、简中/英文、明暗主题与托盘菜单。
+- 移植 ATVV 0.4/1.0、8/16 kHz IMA ADPCM、AUDIO_SYNC、语音会话保活、单击/双击/长按状态机和 Windows 默认映射。
+- 新增 WinRT GATT 传输、AudioGraph 遥控器优先/本机回退路由、REV 011b/0110 HID 报告归一化与 Raw Input 观察后端。
+- 新增 Chromecast 短按持续收音、第二次短按/长按关闭、X6 首次按键防误关与双遥控器隔离的可测试语音会话状态机。
+- 新增无第三方测试框架的 Core 自测、PowerShell 构建/打包脚本和 `windows-latest` CI。
+
+### 发布边界
+
+- 预览版可把音频写入用户独立安装的 VB-CABLE，不捆绑第三方驱动。
+- 内置虚拟麦克风与可拦截原动作的 HID filter 仍需完成 Microsoft 签名和真机矩阵，未完成前不宣称 Windows 正式版。
+
 ## v1.5.0 · 2026-11-08（本 Fork）
 
 ### 新增

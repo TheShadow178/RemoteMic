@@ -1,0 +1,51 @@
+name: Windows
+
+permissions:
+  contents: read
+
+on:
+  push:
+    paths:
+      - "Windows/**"
+      - ".github/workflows/windows.yml"
+  pull_request:
+    paths:
+      - "Windows/**"
+      - ".github/workflows/windows.yml"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    timeout-minutes: 20
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
+
+      - name: Restore
+        shell: pwsh
+        run: >-
+          dotnet restore Windows/RemoteMic.Windows.sln
+          --configfile Windows/NuGet.Config --disable-parallel --verbosity minimal -m:1
+
+      - name: Core self-tests
+        shell: pwsh
+        run: dotnet run --project Windows/RemoteMic.Core.Tests/RemoteMic.Core.Tests.csproj --configuration Release --no-restore
+
+      - name: Build
+        shell: pwsh
+        run: dotnet build Windows/RemoteMic.Windows.sln --configuration Release --no-restore --maxcpucount:1 --verbosity minimal
+
+      - name: Publish preview
+        shell: pwsh
+        run: ./Windows/package.ps1 -Runtime win-x64 -Configuration Release
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: RemoteMic-Windows-win-x64
+          path: Windows/artifacts/RemoteMic-Windows-win-x64.zip
+          if-no-files-found: error

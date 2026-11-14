@@ -1,0 +1,58 @@
+[Version]
+Signature="$WINDOWS NT$"
+Class=System
+ClassGuid={4d36e97d-e325-11ce-bfc1-08002be10318}
+Provider=%ProviderName%
+DriverVer=01/01/2026,1.5.0.0
+CatalogFile=RemoteMic.VirtualHid.cat
+PnpLockdown=1
+
+[DestinationDirs]
+DefaultDestDir=13
+
+[SourceDisksNames]
+1=%DiskName%,,,
+
+[SourceDisksFiles]
+RemoteMicVirtualHid.sys=1
+
+[Manufacturer]
+%ManufacturerName%=Models,NT$ARCH$.10.0...19041
+
+[Models.NT$ARCH$.10.0...19041]
+%DeviceDescription%=DeviceInstall,Root\RemoteMicVirtualHid
+
+[DeviceInstall.NT]
+CopyFiles=DriverCopy
+
+[DeviceInstall.NT.HW]
+AddReg=DeviceInstall.AddReg
+
+[DeviceInstall.AddReg]
+HKR,,LowerFilters,0x00010000,"vhf"
+
+[DriverCopy]
+RemoteMicVirtualHid.sys
+
+[DeviceInstall.NT.Services]
+AddService=RemoteMicVirtualHid,0x00000002,ServiceInstall
+
+[ServiceInstall]
+DisplayName=%ServiceDescription%
+ServiceType=1
+StartType=3
+ErrorControl=1
+ServiceBinary=%13%\RemoteMicVirtualHid.sys
+
+[DeviceInstall.NT.Wdf]
+KmdfService=RemoteMicVirtualHid,WdfSection
+
+[WdfSection]
+KmdfLibraryVersion=$KMDFVERSION$
+
+[Strings]
+ProviderName="RemoteMic Contributors"
+ManufacturerName="RemoteMic Contributors"
+DeviceDescription="RemoteMic Virtual HID Keyboard"
+ServiceDescription="RemoteMic Virtual HID Keyboard Driver"
+DiskName="RemoteMic Virtual HID Keyboard Installation Disk"

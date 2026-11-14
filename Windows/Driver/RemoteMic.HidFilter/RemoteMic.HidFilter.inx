@@ -1,0 +1,61 @@
+[Version]
+Signature="$WINDOWS NT$"
+Class=Extension
+ClassGuid={e2f84ce7-8efa-411c-aa69-97454ca4cb57}
+ExtensionId={df0c32ab-a683-4f5f-84ae-60a4f4d68987}
+Provider=%ProviderName%
+DriverVer=01/01/2026,1.5.0.0
+CatalogFile=RemoteMic.HidFilter.cat
+PnpLockdown=1
+
+[DestinationDirs]
+DefaultDestDir=13
+
+[SourceDisksNames]
+1=%DiskName%,,,
+
+[SourceDisksFiles]
+RemoteMicHidFilter.sys=1
+
+[Manufacturer]
+%ManufacturerName%=Models,NT$ARCH$.10.0...19041
+
+[Models.NT$ARCH$.10.0...19041]
+%DeviceDescription%=FilterInstall,HID\{00001812-0000-1000-8000-00805f9b34fb}_Dev_VID&0118d1_PID&9450
+%TransportDescription%=FilterInstall,BTHLEDevice\{00001812-0000-1000-8000-00805f9b34fb}_Dev_VID&0118d1_PID&9450
+
+[FilterInstall.NT]
+CopyFiles=DriverCopy
+
+[DriverCopy]
+RemoteMicHidFilter.sys
+
+[FilterInstall.NT.Services]
+AddService=RemoteMicHidFilter,0x00000000,ServiceInstall
+
+[ServiceInstall]
+DisplayName=%ServiceDescription%
+ServiceType=1
+StartType=3
+ErrorControl=1
+ServiceBinary=%13%\RemoteMicHidFilter.sys
+
+[FilterInstall.NT.Wdf]
+KmdfService=RemoteMicHidFilter,WdfSection
+
+[WdfSection]
+KmdfLibraryVersion=$KMDFVERSION$
+
+[FilterInstall.NT.Filters]
+AddFilter=RemoteMicHidFilter,,FilterPosition
+
+[FilterPosition]
+FilterPosition=Lower
+
+[Strings]
+ProviderName="RemoteMic Contributors"
+ManufacturerName="RemoteMic Contributors"
+DeviceDescription="RemoteMic Chromecast HID Filter Extension"
+TransportDescription="RemoteMic Chromecast HID Transport Filter Extension"
+ServiceDescription="RemoteMic Chromecast HID Filter Driver"
+DiskName="RemoteMic Chromecast HID Filter Installation Disk"

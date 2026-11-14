@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows10.0.19041.0</TargetFramework>
+    <SupportedOSPlatformVersion>10.0.19041.0</SupportedOSPlatformVersion>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AssemblyName>RemoteMic.Windows</AssemblyName>
+    <RootNamespace>RemoteMic.Windows</RootNamespace>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode>
+    <VersionPrefix>1.5.0</VersionPrefix>
+    <VersionSuffix>windows-preview</VersionSuffix>
+    <FileVersion>1.5.0.0</FileVersion>
+    <Product>RemoteMic for Windows</Product>
+    <AssemblyTitle>RemoteMic for Windows</AssemblyTitle>
+    <Company>RemoteMic Contributors</Company>
+    <Description>Use supported Google ATVV remotes as a Windows microphone and programmable controller.</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RemoteMic.Core\RemoteMic.Core.csproj" />
+    <ProjectReference Include="..\RemoteMic.Platform.Windows\RemoteMic.Platform.Windows.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="..\..\Resources\RemoteImages\chromecast-voice-remote.png"
+              Link="Assets\chromecast-voice-remote.png" />
+    <Resource Include="..\..\Resources\RemoteImages\x6-remote.png"
+              Link="Assets\x6-remote.png" />
+    <Resource Include="..\..\Design\vRemoter-Logo-v1\vRemoter-app-icon-v9.png"
+              Link="Assets\remotemic-icon.png" />
+  </ItemGroup>
+</Project>

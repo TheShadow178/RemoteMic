@@ -17,3 +17,19 @@ Driver/build/
 uuid.txt
 x6-uuid.txt
 Recordings/
+
+# Windows / .NET build artifacts
+.dotnet/
+.dotnet-home/
+.nuget/
+dotnet-install.ps1
+dotnet-sdk-*.zip
+dotnet-sdk*.sha512
+**/bin/
+**/obj/
+Windows/artifacts/
+Windows/*.user
+Windows/*.suo
+Windows/Driver/**/x64/
+Windows/Driver/**/ARM64/
+*.obj

@@ -48,9 +48,9 @@ Chromecast 遥控器的 HID collection 属于 keyboard 类。非特权进程用 
 
 购买时确认三件事：① 是蓝牙 BLE 版，不是纯红外/2.4G；② HID 为 `18D1:9450`；③ 麦克风键能正常唤出语音（ATVV）。
 
-按键映射需要本机安装 root helper；不装 helper 时语音仍可用，按键映射不可用（原因见上）。
+macOS 按键映射需要本机安装 root helper；不装 helper 时语音仍可用，按键映射不可用（原因见上）。
 
-## 安装
+## macOS 安装
 
 ```bash
 ./package-app.sh          # 编译 App + helper，生成 dist/build/RemoteMic.app
@@ -68,11 +68,30 @@ sudo ./uninstall-helper.sh
 
 真机验证步骤、日志关键字、按键 usage 表与排查方法见 [docs/VERIFY-CHECKLIST.md](docs/VERIFY-CHECKLIST.md)。
 
+## Windows 预览版
+
+仓库现包含独立的 `.NET 8 + WPF` Windows 预览实现，界面沿用 v1.5.0 的音频/按键映射布局，并已移植 ATVV 0.4/1.0、ADPCM、语音会话协调、双击/长按手势、Windows 按键动作与遥控器优先音频路由。自动化自测、Release 构建和自包含打包已通过；真实遥控器与干净 Windows 机器矩阵仍按清单待验证。
+
+```powershell
+./Windows/run-self-tests.ps1
+./Windows/build.ps1
+./Windows/package.ps1 -Runtime win-x64
+```
+
+预览包输出到 `Windows/artifacts/RemoteMic-Windows-win-x64.zip`。当前音频出口支持独立安装的 VB-CABLE；选择 `CABLE Output` 作为输入法或会议软件的麦克风。项目不会捆绑或重新分发 VB-CABLE。
+
+当前 EXE/ZIP 尚未做 Authenticode 签名，Windows 可能显示 SmartScreen 提示；CI 仅生成 x64 预览包，ARM64 脚本路径尚未完成真机验证。
+
+Windows 完整生产级一致性还需要两个经 Microsoft 签名的驱动：内置 `RemoteMic 2ch` 虚拟麦克风，以及只绑定 `18D1:9450` 的 HID 过滤驱动。签名驱动完成前，Raw Input 映射属于观察模式，Windows 仍可能同时执行按键原动作；项目不会要求普通用户关闭 Secure Boot 或开启测试签名。
+
+详见 [Windows/README.md](Windows/README.md)、[Windows 驱动边界](Windows/Driver/README.md) 与 [Windows 真机验证清单](Windows/docs/VERIFY-CHECKLIST.md)。
+
 ## 已知限制
 
 - 只按 VID/PID 匹配，不校验设备名；同 VID/PID 的其他设备也会被接管。
 - helper 为 ad-hoc 签名，按代码签名 identifier 校验对端。能本机 ad-hoc 签名同 identifier 应用的攻击者可以伪装成 App，这是未做 Developer ID 签名的本机构建的固有限制。
 - 本项目未做 Apple 公证；首次运行需在「系统设置 → 隐私与安全性」里放行。
+- Windows 预览版尚未捆绑签名的虚拟麦克风/HID 过滤驱动，具体边界见上节。
 - 原项目功能与文案版权归原作者，本 Fork 仅维护上述修复。
 
 

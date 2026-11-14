@@ -1,0 +1,34 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <Color x:Key="PanelColor">#FF0E0F11</Color>
+  <Color x:Key="SurfaceColor">#FF15171A</Color>
+  <Color x:Key="Surface2Color">#FF1A1D20</Color>
+  <Color x:Key="LineColor">#FF383B40</Color>
+  <Color x:Key="LineSoftColor">#FF26292E</Color>
+  <Color x:Key="TextColor">#FFEDEFF2</Color>
+  <Color x:Key="SecondaryColor">#FF8C929C</Color>
+  <Color x:Key="TertiaryColor">#FF646A73</Color>
+  <Color x:Key="GreenColor">#FF4FD187</Color>
+  <Color x:Key="GreenDeepColor">#FF0F4029</Color>
+  <Color x:Key="AmberColor">#FFF59B30</Color>
+  <Color x:Key="AmberDeepColor">#FF292117</Color>
+  <Color x:Key="RedColor">#FFF05457</Color>
+  <Color x:Key="RedDeepColor">#FF401417</Color>
+  <Color x:Key="TrackColor">#FF08090A</Color>
+
+  <SolidColorBrush x:Key="PanelBrush" Color="{StaticResource PanelColor}" />
+  <SolidColorBrush x:Key="SurfaceBrush" Color="{StaticResource SurfaceColor}" />
+  <SolidColorBrush x:Key="Surface2Brush" Color="{StaticResource Surface2Color}" />
+  <SolidColorBrush x:Key="LineBrush" Color="{StaticResource LineColor}" />
+  <SolidColorBrush x:Key="LineSoftBrush" Color="{StaticResource LineSoftColor}" />
+  <SolidColorBrush x:Key="TextBrush" Color="{StaticResource TextColor}" />
+  <SolidColorBrush x:Key="SecondaryBrush" Color="{StaticResource SecondaryColor}" />
+  <SolidColorBrush x:Key="TertiaryBrush" Color="{StaticResource TertiaryColor}" />
+  <SolidColorBrush x:Key="GreenBrush" Color="{StaticResource GreenColor}" />
+  <SolidColorBrush x:Key="GreenDeepBrush" Color="{StaticResource GreenDeepColor}" />
+  <SolidColorBrush x:Key="AmberBrush" Color="{StaticResource AmberColor}" />
+  <SolidColorBrush x:Key="AmberDeepBrush" Color="{StaticResource AmberDeepColor}" />
+  <SolidColorBrush x:Key="RedBrush" Color="{StaticResource RedColor}" />
+  <SolidColorBrush x:Key="RedDeepBrush" Color="{StaticResource RedDeepColor}" />
+  <SolidColorBrush x:Key="TrackBrush" Color="{StaticResource TrackColor}" />
+</ResourceDictionary>
